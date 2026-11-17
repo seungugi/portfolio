@@ -1,9 +1,11 @@
 import fs from 'node:fs/promises';
+import {createHash} from 'node:crypto';
 import path from 'node:path';
 import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
 const {marked}=createRequire(import.meta.url)('marked');
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const styleVersion=createHash('sha256').update(await fs.readFile(path.join(root,'styles.css'))).digest('hex').slice(0,12);
 const data=JSON.parse(await fs.readFile(path.join(root,'content/profile.json'),'utf8'));
 const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 const out=(name,html)=>fs.writeFile(path.join(root,name),html);
@@ -18,7 +20,7 @@ function header(prefix=''){
  return `<a class="skip" href="#main">본문으로 건너뛰기</a><header class="container header"><div class="header-left"><h1><a href="${prefix||'./'}">${esc(data.name)}</a></h1><h2>${esc(data.headline)}</h2></div><div class="header-right"><div class="social-icons">${social(data.github,'GitHub','github')}${social(data.instagram,'Instagram','instagram')}${social('mailto:'+data.email,'이메일','email')}</div><p>Email: <a href="mailto:${data.email}">${data.email}</a></p><p>Phone: <a href="tel:+821075581545">${data.phone}</a></p></div></header>`;
 }
 function shell(title,description,body,prefix='',canonical=''){
- return `<!doctype html>\n<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff"><title>${esc(title)}</title><meta name="description" content="${esc(description)}"><link rel="canonical" href="https://seungugi.github.io/portfolio/${canonical}"><meta property="og:type" content="website"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="https://seungugi.github.io/portfolio/${canonical}"><meta property="og:image" content="https://seungugi.github.io/portfolio/assets/asset-00.webp"><link rel="icon" type="image/svg+xml" href="${prefix}assets/favicon.svg"><link rel="stylesheet" href="${prefix}styles.css"></head><body>${header(prefix)}${body}<footer class="container footer"><p>${esc(data.name)} · <a href="mailto:${data.email}">${data.email}</a> · ${external(data.github,'Github')}</p></footer></body></html>\n`;
+ return `<!doctype html>\n<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff"><title>${esc(title)}</title><meta name="description" content="${esc(description)}"><link rel="canonical" href="https://seungugi.github.io/portfolio/${canonical}"><meta property="og:type" content="website"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="https://seungugi.github.io/portfolio/${canonical}"><meta property="og:image" content="https://seungugi.github.io/portfolio/assets/asset-00.webp"><link rel="icon" type="image/svg+xml" href="${prefix}assets/favicon.svg"><link rel="stylesheet" href="${prefix}styles.css?v=${styleVersion}"></head><body>${header(prefix)}${body}<footer class="container footer"><p>${esc(data.name)} · <a href="mailto:${data.email}">${data.email}</a> · ${external(data.github,'Github')}</p></footer></body></html>\n`;
 }
 const section=(id,title,body)=>`<section class="resume-section" id="${id}"><h2 class="section-title">${title}</h2>${body}</section>`;
 const row=(title,meta,body)=>`<article class="resume-row"><div class="details"><h3>${title}</h3>${meta}</div><div class="description">${body}</div></article>`;

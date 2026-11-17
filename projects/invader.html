@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff"><title>Invader | 이승욱</title><meta name="description" content="Unity 3D 기반 SF 오토 배틀러에서 보드와 모듈 배치 시스템을 구현했습니다."><link rel="canonical" href="https://seungugi.github.io/portfolio/projects/invader.html"><meta property="og:type" content="website"><meta property="og:title" content="Invader | 이승욱"><meta property="og:description" content="Unity 3D 기반 SF 오토 배틀러에서 보드와 모듈 배치 시스템을 구현했습니다."><meta property="og:url" content="https://seungugi.github.io/portfolio/projects/invader.html"><meta property="og:image" content="https://seungugi.github.io/portfolio/assets/asset-00.webp"><link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"><link rel="stylesheet" href="../styles.css"></head><body><a class="skip" href="#main">본문으로 건너뛰기</a><header class="container header"><div class="header-left"><h1><a href="../">이승욱</a></h1><h2>배움을 이어가는 Programmer</h2></div><div class="header-right"><div class="social-icons"><a class="social-icon" href="https://github.com/seungugi" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.09c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.64-1.25-1.64-1.03-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1 1.72 2.62 1.22 3.26.93.1-.73.4-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.08 1.15a10.66 10.66 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.62 1.55.23 2.7.12 2.98.72.79 1.15 1.79 1.15 3.02 0 4.33-2.63 5.28-5.14 5.56.4.35.76 1.03.76 2.08v3.09c0 .3.2.65.78.54A11.2 11.2 0 0 0 12 .8z"/></svg></a><a class="social-icon" href="https://www.instagram.com/one_ch.0?igsh=dzl4cm9vaXlsYWt4&amp;utm_source=qr" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2"/></svg></a><a class="social-icon" href="mailto:lee12131213@gmail.com" aria-label="이메일"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm9 9L3 7v2l9 6 9-6V7z"/></svg></a></div><p>Email: <a href="mailto:lee12131213@gmail.com">lee12131213@gmail.com</a></p><p>Phone: <a href="tel:+821075581545">+82 10-7558-1545</a></p></div></header><main class="container project-document" id="main"><p class="no-print"><a href="../#projects">← 모든 프로젝트</a></p><h2 class="section-title">Invader</h2><p class="quote">Unity 3D 기반 SF 오토 배틀러에서 보드와 모듈 배치 시스템을 구현했습니다.</p><p class="document-tools"><a href="https://github.com/Ohseguri/01-Invader" class="" target="_blank" rel="noopener noreferrer">GitHub 저장소</a> · <a href="../assets/asset-06.pdf" class="" target="_blank" rel="noopener noreferrer">기획 발표 자료 PDF</a></p><div class="detail-layout"><aside class="toc no-print" aria-label="프로젝트 목차"><h3>목차</h3><a href="#section-1">Project Invader</a><a href="#section-2">프로젝트 소개</a><a href="#section-3">프로젝트 정보</a><a href="#section-4">담당 구현 요약</a><a href="#section-5">보드 시스템</a><a href="#section-6">보드 시스템 개요</a><a href="#section-7">주요 기능</a><a href="#section-8">GridRoot</a><a href="#section-9">GridManager</a><a href="#section-10">모듈 시스템</a><a href="#section-11">모듈 시스템 개요</a><a href="#section-12">모듈 배치 흐름</a><a href="#section-13">PlaceManager</a><a href="#section-14">PlaceCalc</a><a href="#section-15">ModuleView와 GridPlaneVisual</a><a href="#section-16">SpawnerDataBridge</a><a href="#section-17">모듈 인벤토리와 상점 연동</a><a href="#section-18">시스템 구조</a><a href="#section-19">구현하면서 신경 쓴 부분</a><a href="#section-20">1. 역할 분리</a><a href="#section-21">2. 데이터 기반 모듈 처리</a><a href="#section-22">3. 시각 좌표와 논리 좌표 일치</a><a href="#section-23">4. 전투 시스템과의 연결</a><a href="#section-24">트러블슈팅</a><a href="#section-25">문제 1. 모듈의 시각적 위치와 실제 배치 좌표가 어긋나는 문제</a><a href="#section-26">문제 2. 다양한 형태의 모듈을 처리하기 어려운 문제</a><a href="#section-27">문제 3. 모듈 배치 결과를 전투 시스템으로 넘기는 문제</a><a href="#section-28">담당 구현 정리</a><a href="#section-29">구현을 통해 배운 점</a></aside><article class="article"><h2 id="section-1">Project Invader</h2>
+<blockquote>
+<p><b>Unity 3D 기반 3D 쿼터뷰 SF 오토 배틀러 게임의 보드 및 모듈 시스템 구현</b></p>
+</blockquote>
+<hr>
+<h3 id="section-2">프로젝트 소개</h3>
+<p><b>Project Invader</b>는 Unity 3D를 활용해 제작한 <b>3D 쿼터뷰 SF 오토 배틀러 게임</b>입니다.</p>
+<p>플레이어는 전투 전에 보드 위에 다양한 모듈을 배치하고,</p>
+<p>배치된 모듈 조합에 따라 전투에서 생산되는 유닛, 스탯, 전투 효율이 달라집니다.</p>
+<p>제가 담당한 부분은 이 게임의 핵심 준비 단계인 <b>보드 시스템과 모듈 배치 시스템</b>입니다.</p>
+<p>단순히 오브젝트를 보드 위에 놓는 기능이 아니라,</p>
+<p>모듈 선택, 회전, 미리보기, 배치 가능 여부 판정, 실제 배치, 회수, 전투 데이터 변환까지 이어지는 구조를 설계하고 구현했습니다.</p>
+<hr>
+<h3 id="section-3">프로젝트 정보</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>프로젝트명</td>
+<td>Project Invader</td>
+</tr>
+<tr>
+<td>장르</td>
+<td>3D 쿼터뷰 SF 오토 배틀러</td>
+</tr>
+<tr>
+<td>개발 엔진</td>
+<td>Unity</td>
+</tr>
+<tr>
+<td>개발 언어</td>
+<td>C#</td>
+</tr>
+<tr>
+<td>담당 파트</td>
+<td>보드 시스템, 모듈 시스템</td>
+</tr>
+<tr>
+<td>핵심 키워드</td>
+<td>모듈 배치, 그리드 보드, 인벤토리 테트리스, 데이터 기반 배치, 전투 연동</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="section-4">담당 구현 요약</h3>
+<p>제가 구현한 시스템은 크게 두 가지입니다.</p>
+<ul>
+<li>보드 시스템</li>
+<li>모듈 시스템</li>
+</ul>
+<p>보드 시스템은 모듈이 배치되는 공간을 관리하는 역할을 담당합니다.</p>
+<p>모듈 시스템은 플레이어가 모듈을 선택하고, 회전하고, 보드 위에 배치하며, 배치된 결과를 전투 시스템으로 넘기는 역할을 담당합니다.</p>
+<hr>
+<h2 id="section-5">보드 시스템</h2>
+<p><img src="../assets/asset-04.webp" alt="Invader 구현 화면"></p>
+<h3 id="section-6">보드 시스템 개요</h3>
+<p>보드 시스템은 모듈 배치의 기준이 되는 그리드 기반 시스템입니다.</p>
+<p>플레이어가 보는 3D 보드의 위치와 실제 코드에서 판정하는 좌표가 다르면</p>
+<p>모듈이 의도한 위치에 배치되지 않거나, 배치 가능 여부가 잘못 판단될 수 있습니다.</p>
+<p>이를 방지하기 위해 보드의 시각적 위치와 논리적 좌표를 일치시키는 구조를 만들었습니다.</p>
+<hr>
+<h3 id="section-7">주요 기능</h3>
+<ul>
+<li>보드 좌표 관리</li>
+<li>마우스 위치를 그리드 좌표로 변환</li>
+<li>보드 셀 크기와 기준점 관리</li>
+<li>모듈 배치 가능 여부 검사</li>
+<li>이미 배치된 모듈 점유 상태 관리</li>
+<li>배치된 모듈 제거 처리</li>
+<li>보드 확장 처리</li>
+<li>강화 칸 및 버프 영향 칸 관리</li>
+<li>현재 배치 상태를 외부 시스템에 전달</li>
+</ul>
+<hr>
+<h3 id="section-8">GridRoot</h3>
+<p><b>GridRoot</b>는 플레이어 입력 위치를 실제 보드 좌표로 변환하는 역할을 담당합니다.</p>
+<p>마우스가 가리키는 월드 좌표를 받아서</p>
+<p>CellSize와 Origin 기준으로 그리드 좌표를 계산하고,</p>
+<p>해당 좌표에 맞는 스냅 위치를 반환합니다.</p>
+<p>이 구조를 통해 화면에서 보이는 위치와 실제 배치 판정 좌표가 어긋나지 않도록 했습니다.</p>
+<hr>
+<h3 id="section-9">GridManager</h3>
+<p><b>GridManager</b>는 보드의 실제 상태를 관리하는 핵심 클래스입니다.</p>
+<p>각 칸이 비어 있는지, 이미 모듈이 놓여 있는지, 배치 가능한 위치인지 판단합니다.</p>
+<p>모듈 배치가 요청되면 GridManager가 최종적으로 배치 가능 여부를 검사하고,</p>
+<p>가능한 경우에만 실제 보드 상태를 갱신합니다.</p>
+<p>GridManager에서 관리한 주요 기능은 다음과 같습니다.</p>
+<ul>
+<li>빈 칸 / 점유 칸 판정</li>
+<li>모듈 배치 가능 여부 확인</li>
+<li>실제 모듈 배치 처리</li>
+<li>모듈 제거 처리</li>
+<li>동일 위치 업그레이드 판정</li>
+<li>보드 확장 처리</li>
+<li>현재 배치된 모듈 정보 반환</li>
+</ul>
+<hr>
+<h2 id="section-10">모듈 시스템</h2>
+<h3 id="section-11">모듈 시스템 개요</h3>
+<p>모듈 시스템은 Project Invader의 전략성을 만드는 핵심 시스템입니다.</p>
+<p>플레이어는 상점에서 모듈을 구매하고,</p>
+<p>인벤토리에 보관한 뒤, 보드 위에 배치합니다.</p>
+<p>배치된 모듈은 전투 시스템으로 전달되어</p>
+<p>아군 유닛 생산, 스탯 변화, 전투 효율 등에 영향을 줍니다.</p>
+<p>즉, 모듈 시스템은 전투 전에 플레이어가 전략을 설계하는 준비 단계입니다.</p>
+<hr>
+<h3 id="section-12">모듈 배치 흐름</h3>
+<pre><code class="language-txt">모듈 선택
+↓
+마우스 위치 확인
+↓
+보드 좌표 변환
+↓
+모듈 회전 및 형태 계산
+↓
+배치 가능 여부 검사
+↓
+미리보기 갱신
+↓
+실제 배치
+↓
+보드 상태 갱신
+↓
+전투 데이터로 변환
+</code></pre>
+<hr>
+<h3 id="section-13">PlaceManager</h3>
+<p><b>PlaceManager</b>는 모듈 배치 흐름을 제어하는 중앙 제어 클래스입니다.</p>
+<p>모듈 배치 시스템은 실시간 상호작용이 많기 때문에,</p>
+<p>입력 처리와 배치 로직이 여러 스크립트에 흩어지면 관리가 어려워질 수 있습니다.</p>
+<p>그래서 PlaceManager가 플레이어 입력과 그리드 배치 로직 사이를 연결하는 역할을 담당하도록 설계했습니다.</p>
+<p>주요 기능은 다음과 같습니다.</p>
+<ul>
+<li>선택된 모듈 드래그 처리</li>
+<li>입력에 따른 모듈 회전</li>
+<li>배치 가능 여부 실시간 확인</li>
+<li>배치 가능 / 불가능 상태 미리보기 반영</li>
+<li>실제 배치 진행</li>
+<li>배치 취소 처리</li>
+<li>배치된 모듈 제거 처리</li>
+<li>전투 중 배치 입력 차단</li>
+</ul>
+<hr>
+<h3 id="section-14">PlaceCalc</h3>
+<p><b>PlaceCalc</b>는 모듈의 형태를 계산하는 클래스입니다.</p>
+<p>모듈은 모두 같은 크기가 아니라,</p>
+<p>여러 칸을 차지하거나 회전될 수 있는 형태를 가집니다.</p>
+<p>따라서 모듈의 문자열 데이터를 기반으로</p>
+<p>현재 회전 상태에서 어떤 칸들을 차지하는지 계산하는 구조가 필요했습니다.</p>
+<p>PlaceCalc를 통해 다양한 형태의 모듈을 하드코딩하지 않고,</p>
+<p>데이터 기반으로 공통 처리할 수 있도록 만들었습니다.</p>
+<hr>
+<h3 id="section-15">ModuleView와 GridPlaneVisual</h3>
+<p><b>ModuleView</b>는 모듈의 시각적 표시를 담당합니다.</p>
+<p>모듈을 배치하기 전에는 미리보기를 보여주고,</p>
+<p>배치가 완료되면 실제 모듈 오브젝트를 보드 위에 표시합니다.</p>
+<p><b>GridPlaneVisual</b>은 보드 칸의 시각적 상태를 담당합니다.</p>
+<p>배치 가능한 위치인지, 불가능한 위치인지,</p>
+<p>또는 버프나 강화 영향을 받는 칸인지 시각적으로 구분할 수 있도록 구성했습니다.</p>
+<hr>
+<h3 id="section-16">SpawnerDataBridge</h3>
+<p>모듈 배치 시스템은 전투 시스템과 직접 연결되어야 합니다.</p>
+<p>하지만 보드 위에 배치된 모듈 데이터는</p>
+<p>전투 시스템에서 바로 사용할 수 있는 형태가 아니기 때문에 변환 과정이 필요했습니다.</p>
+<p><b>SpawnerDataBridge</b>는 배치된 모듈 정보를 전투 시스템이 사용할 수 있는 데이터로 변환하는 역할을 합니다.</p>
+<p>이를 통해 모듈 시스템과 전투 시스템의 직접 의존도를 줄이고,</p>
+<p>배치 결과가 자연스럽게 유닛 생산 데이터로 이어지도록 만들었습니다.</p>
+<hr>
+<h2 id="section-17">모듈 인벤토리와 상점 연동</h2>
+<p>모듈 시스템은 인벤토리와 상점 시스템과도 연결됩니다.</p>
+<p>플레이어는 상점에서 모듈을 구매하고,</p>
+<p>구매한 모듈은 인벤토리에 저장됩니다.</p>
+<p>이후 인벤토리에서 모듈을 보드로 드래그하면 배치가 진행되고,</p>
+<p>배치된 모듈을 회수하면 다시 인벤토리로 돌아오도록 구성했습니다.</p>
+<p>주요 흐름은 다음과 같습니다.</p>
+<ul>
+<li>상점에서 모듈 구매</li>
+<li>구매한 모듈을 인벤토리에 저장</li>
+<li>인벤토리에서 보드로 드래그하여 배치</li>
+<li>배치된 모듈 우클릭 시 회수</li>
+<li>회수된 모듈을 다시 인벤토리에 저장</li>
+</ul>
+<p>이 구조를 통해 상점, 인벤토리, 보드 배치가 하나의 흐름으로 연결되도록 했습니다.</p>
+<hr>
+<h2 id="section-18">시스템 구조</h2>
+<pre><code class="language-txt">PlaceManager
+↓
+GridRoot
+↓
+PlaceCalc
+↓
+GridManager
+↓
+ModuleView / GridPlaneVisual
+↓
+SpawnerDataBridge
+↓
+SpawnerDataBuilder
+↓
+전투 시스템
+</code></pre>
+<hr>
+<h2 id="section-19">구현하면서 신경 쓴 부분</h2>
+<h3 id="section-20">1. 역할 분리</h3>
+<p>처음에는 모듈 배치에 필요한 기능이 많아 하나의 스크립트에 모든 기능이 몰릴 위험이 있었습니다.</p>
+<p>이를 방지하기 위해 입력은 PlaceManager,</p>
+<p>좌표 변환은 GridRoot,</p>
+<p>배치 판정은 GridManager,</p>
+<p>형태 계산은 PlaceCalc처럼 역할을 나누었습니다.</p>
+<p>이 구조 덕분에 기능을 수정하거나 확장할 때 어느 부분을 고쳐야 하는지 명확해졌습니다.</p>
+<hr>
+<h3 id="section-21">2. 데이터 기반 모듈 처리</h3>
+<p>모듈마다 모양과 크기가 다르기 때문에</p>
+<p>각 모듈을 코드로 따로 처리하면 유지보수가 어려워질 수 있었습니다.</p>
+<p>그래서 모듈의 형태를 데이터로 관리하고,</p>
+<p>PlaceCalc에서 해당 데이터를 기반으로 배치 영역을 계산하도록 만들었습니다.</p>
+<p>이를 통해 새로운 모듈이 추가되어도 기존 코드를 크게 수정하지 않고 대응할 수 있도록 했습니다.</p>
+<hr>
+<h3 id="section-22">3. 시각 좌표와 논리 좌표 일치</h3>
+<p>보드 배치 시스템에서 가장 중요한 부분은</p>
+<p>플레이어가 보는 위치와 실제 판정 좌표가 일치하는 것입니다.</p>
+<p>GridRoot를 통해 월드 좌표를 그리드 좌표로 변환하고,</p>
+<p>GridManager가 해당 좌표를 기준으로 최종 배치 여부를 판단하도록 구성했습니다.</p>
+<hr>
+<h3 id="section-23">4. 전투 시스템과의 연결</h3>
+<p>모듈 시스템은 단독으로 끝나는 시스템이 아니라,</p>
+<p>전투 시스템으로 데이터를 넘겨야 의미가 있습니다.</p>
+<p>그래서 SpawnerDataBridge를 통해 배치된 모듈 정보를 전투용 데이터로 변환하도록 만들었습니다.</p>
+<p>이 구조를 통해 모듈 배치 결과가 실제 전투 유닛 생산에 반영되도록 연결했습니다.</p>
+<hr>
+<h2 id="section-24">트러블슈팅</h2>
+<h3 id="section-25">문제 1. 모듈의 시각적 위치와 실제 배치 좌표가 어긋나는 문제</h3>
+<h3>원인</h3>
+<p>마우스 위치를 그대로 사용하면 3D 보드 위의 실제 셀 좌표와 일치하지 않는 문제가 발생할 수 있었습니다.</p>
+<h3>해결</h3>
+<p>GridRoot에서 월드 좌표를 CellSize와 Origin 기준의 그리드 좌표로 변환하도록 구현했습니다.</p>
+<p>이를 통해 모듈이 보이는 위치와 실제 판정 위치가 일치하도록 했습니다.</p>
+<hr>
+<h3 id="section-26">문제 2. 다양한 형태의 모듈을 처리하기 어려운 문제</h3>
+<h3>원인</h3>
+<p>모듈마다 차지하는 칸의 형태가 다르고, 회전까지 고려해야 했기 때문에</p>
+<p>모듈별로 개별 로직을 작성하면 코드가 복잡해질 수 있었습니다.</p>
+<h3>해결</h3>
+<p>모듈 형태를 데이터 기반으로 처리하고, PlaceCalc에서 회전된 영역을 계산하도록 구성했습니다.</p>
+<p>이를 통해 다양한 모듈 형태를 하나의 공통 로직으로 처리할 수 있었습니다.</p>
+<hr>
+<h3 id="section-27">문제 3. 모듈 배치 결과를 전투 시스템으로 넘기는 문제</h3>
+<h3>원인</h3>
+<p>보드에 배치된 모듈 정보와 전투 시스템에서 필요한 스폰 데이터의 형태가 달랐습니다.</p>
+<h3>해결</h3>
+<p>SpawnerDataBridge를 통해 배치 정보를 전투 시스템용 데이터로 변환했습니다.</p>
+<p>이 구조 덕분에 모듈 시스템과 전투 시스템이 직접 강하게 연결되지 않고도 데이터를 전달할 수 있었습니다.</p>
+<hr>
+<h2 id="section-28">담당 구현 정리</h2>
+<ul>
+<li>보드 좌표 시스템 구현</li>
+<li>GridRoot 기반 월드 좌표 → 그리드 좌표 변환 구현</li>
+<li>GridManager 기반 보드 상태 관리 구현</li>
+<li>모듈 배치 가능 여부 판정 구현</li>
+<li>모듈 선택, 회전, 미리보기 구현</li>
+<li>PlaceManager 기반 배치 흐름 제어</li>
+<li>PlaceCalc 기반 모듈 형태 및 회전 계산</li>
+<li>ModuleView 기반 모듈 시각화</li>
+<li>GridPlaneVisual 기반 보드 미리보기 구현</li>
+<li>모듈 배치 및 제거 처리</li>
+<li>모듈 인벤토리와 보드 배치 연동</li>
+<li>배치된 모듈 정보를 전투 데이터로 변환</li>
+<li>SpawnerDataBridge 연동</li>
+<li>모듈 3D 모델링 제작</li>
+</ul>
+<hr>
+<h2 id="section-29">구현을 통해 배운 점</h2>
+<p>이번 프로젝트를 통해 단순히 기능을 구현하는 것보다,</p>
+<p>여러 시스템과 연결될 수 있는 구조를 설계하는 것이 중요하다는 것을 느꼈습니다.</p>
+<p>특히 PlaceManager, GridManager, GridRoot처럼 역할을 명확하게 분리하면서</p>
+<p>처음 설계에 시간이 걸리더라도 이후 유지보수와 기능 확장 측면에서 훨씬 효율적이라는 것을 체감했습니다.</p>
+<p>또한 모듈의 형태를 데이터 기반으로 처리하고,</p>
+<p>회전이나 여러 칸을 차지하는 구조를 공통 로직으로 해결하면서</p>
+<p>하나의 시스템으로 다양한 케이스를 처리하는 방법을 경험할 수 있었습니다.</p>
+<p>단순히 동작만 하는 기능이 아니라,</p>
+<p>새로운 모듈이 추가되더라도 기존 코드를 크게 수정하지 않고 대응할 수 있는 구조를 만드는 것이 인상 깊었습니다.</p>
+<p class="print-only">https://seungugi.github.io/portfolio/projects/invader.html</p></article></div><nav class="next-project no-print" aria-label="다른 프로젝트"><a href="../#projects">← 프로젝트 목록</a><a href="blockblaster.html">BlockBlaster(Imitation) →</a></nav></main><footer class="container footer"><p>이승욱 · <a href="mailto:lee12131213@gmail.com">lee12131213@gmail.com</a> · <a href="https://github.com/seungugi" class="" target="_blank" rel="noopener noreferrer">Github</a></p></footer></body></html>

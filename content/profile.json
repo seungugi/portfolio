@@ -1,0 +1,237 @@
+{
+  "name": "이승욱",
+  "englishName": "Lee Seung Wook",
+  "headline": "배움을 이어가는 Programmer",
+  "location": "Busan, South Korea",
+  "birth": "2002.12.13.",
+  "email": "lee12131213@gmail.com",
+  "phone": "+82 10-7558-1545",
+  "github": "https://github.com/seungugi",
+  "instagram": "https://www.instagram.com/one_ch.0?igsh=dzl4cm9vaXlsYWt4&utm_source=qr",
+  "photo": "assets/asset-00.webp",
+  "credits": 109,
+  "gpa": "3.25",
+  "education": [
+    {
+      "name": "부산대학교",
+      "en": "Pusan National University",
+      "period": "2021.02. — 현재",
+      "detail": "B.S. in Computer Science"
+    },
+    {
+      "name": "창원남고등학교",
+      "en": "Changwon Nam High School",
+      "period": "2018.03. — 2021.02.",
+      "detail": "44기 졸업"
+    }
+  ],
+  "experience": [
+    [
+      "2026.11",
+      "SK하이닉스 해커톤",
+      "본선 참여"
+    ],
+    [
+      "2026.10 — 2026.11",
+      "멋쟁이사자처럼 로켓단",
+      "인턴십 참여"
+    ],
+    [
+      "2026.09",
+      "DACON",
+      "나라장터 입찰 문서 판정 AI 개발"
+    ],
+    [
+      "2026.08",
+      "LG Aimers 9기",
+      "교육 참여 · 야구 제구 예측 모델 개발"
+    ],
+    [
+      "2026.07",
+      "NYPC 마스터 트랙",
+      "전략 게임 AI 개발"
+    ],
+    [
+      "2025.10 — 2026.05",
+      "멋쟁이사자처럼",
+      "실전 Unity 게임 개발 6회차 이수"
+    ],
+    [
+      "2024.03 — 2027.08",
+      "부산대학교 AID",
+      "의생명공학대학 인공지능 동아리"
+    ],
+    [
+      "2025.02 — 2025.08",
+      "부산대학교 TopSpin",
+      "탁구동아리 총무"
+    ],
+    [
+      "2024.03 — 2026.08",
+      "부산대학교 TopSpin",
+      "탁구동아리 활동"
+    ],
+    [
+      "2022.02 — 2023.08",
+      "대한민국 육군",
+      "병장 만기전역"
+    ],
+    [
+      "2018.03 — 2021.02",
+      "창원남고등학교",
+      ""
+    ]
+  ],
+  "projects": [
+    {
+      "name": "Invader",
+      "slug": "invader",
+      "summary": "Unity 3D 기반 SF 오토 배틀러에서 보드와 모듈 배치 시스템을 구현했습니다.",
+      "genres": [
+        "Roguelite",
+        "Autobattler"
+      ],
+      "github": "https://github.com/Ohseguri/01-Invader",
+      "attachments": [
+        {
+          "name": "기획 발표 자료 PDF",
+          "path": "assets/asset-06.pdf"
+        }
+      ]
+    },
+    {
+      "name": "BlockBlaster(Imitation)",
+      "slug": "blockblaster",
+      "summary": "블록 배치부터 라인 제거, 콤보, 게임오버 판정까지 연결한 퍼즐 모작 프로젝트입니다.",
+      "genres": [
+        "Puzzle"
+      ],
+      "github": "https://github.com/impala1213/BlockBlaster",
+      "attachments": []
+    },
+    {
+      "name": "HollowKnight(Imitation)",
+      "slug": "hollow-knight",
+      "summary": "Hollow Knight의 튜토리얼 일부를 참고해 제작한 2D 액션 플랫포머 모작입니다.",
+      "genres": [
+        "2D Platformer",
+        "Metroidvania"
+      ],
+      "github": "https://github.com/impala1213/HollowKnight-Imitation",
+      "attachments": []
+    },
+    {
+      "name": "Gomoku",
+      "slug": "gomoku",
+      "summary": "Unity로 제작한 2인용 오목 게임. 좌표 관리와 턴 전환, 네 방향 승리 판정을 구현했습니다.",
+      "genres": [
+        "Puzzle"
+      ],
+      "github": "https://github.com/Ohseguri/Project_Gomoku",
+      "attachments": []
+    }
+  ],
+  "skills": [
+    {
+      "name": "Notion",
+      "level": 5
+    },
+    {
+      "name": "Python",
+      "level": 7
+    },
+    {
+      "name": "한글",
+      "level": 9
+    },
+    {
+      "name": "Microsoft Word",
+      "level": 7
+    },
+    {
+      "name": "Microsoft PowerPoint",
+      "level": 9
+    },
+    {
+      "name": "Microsoft Excel",
+      "level": 3
+    },
+    {
+      "name": "ChatGPT",
+      "level": 9
+    },
+    {
+      "name": "Google Gemini",
+      "level": 8
+    },
+    {
+      "name": "C",
+      "level": 6
+    },
+    {
+      "name": "C#",
+      "level": 8
+    },
+    {
+      "name": "JavaScript",
+      "level": 4
+    },
+    {
+      "name": "Blender",
+      "level": 3
+    },
+    {
+      "name": "GitHub",
+      "level": 7
+    }
+  ],
+  "certificates": [
+    {
+      "name": "OPIC",
+      "score": null,
+      "status": "준비 중",
+      "assets": []
+    },
+    {
+      "name": "TOPCIT",
+      "score": 610,
+      "status": "성적 있음",
+      "assets": [
+        {
+          "path": "assets/asset-12.webp",
+          "name": "2CFC1A25-0139-4D83-BC5A-38B9630FB345.png"
+        },
+        {
+          "path": "assets/asset-13.pdf",
+          "name": "성적증명서.pdf"
+        }
+      ]
+    },
+    {
+      "name": "NYPC",
+      "score": null,
+      "status": "성적 있음",
+      "assets": [
+        {
+          "path": "assets/asset-15.webp",
+          "name": "682ACB85-AC47-4F9C-894D-B199802220D5.png"
+        },
+        {
+          "path": "assets/asset-16.pdf",
+          "name": "NYPC인증서.pdf"
+        }
+      ]
+    },
+    {
+      "name": "SKHYNIX-HACKATHON",
+      "score": null,
+      "status": "성적 있음",
+      "assets": [
+        {
+          "path": "assets/asset-18.webp",
+          "name": "하이닉스_참여증.jpg"
+        }
+      ]
+    }
+  ]
+}

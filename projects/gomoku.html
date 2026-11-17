@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff"><title>Gomoku | 이승욱</title><meta name="description" content="Unity로 제작한 2인용 오목 게임. 좌표 관리와 턴 전환, 네 방향 승리 판정을 구현했습니다."><link rel="canonical" href="https://seungugi.github.io/portfolio/projects/gomoku.html"><meta property="og:type" content="website"><meta property="og:title" content="Gomoku | 이승욱"><meta property="og:description" content="Unity로 제작한 2인용 오목 게임. 좌표 관리와 턴 전환, 네 방향 승리 판정을 구현했습니다."><meta property="og:url" content="https://seungugi.github.io/portfolio/projects/gomoku.html"><meta property="og:image" content="https://seungugi.github.io/portfolio/assets/asset-00.webp"><link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"><link rel="stylesheet" href="../styles.css"></head><body><a class="skip" href="#main">본문으로 건너뛰기</a><header class="container header"><div class="header-left"><h1><a href="../">이승욱</a></h1><h2>배움을 이어가는 Programmer</h2></div><div class="header-right"><div class="social-icons"><a class="social-icon" href="https://github.com/seungugi" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.09c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.64-1.25-1.64-1.03-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1 1.72 2.62 1.22 3.26.93.1-.73.4-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.08 1.15a10.66 10.66 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.62 1.55.23 2.7.12 2.98.72.79 1.15 1.79 1.15 3.02 0 4.33-2.63 5.28-5.14 5.56.4.35.76 1.03.76 2.08v3.09c0 .3.2.65.78.54A11.2 11.2 0 0 0 12 .8z"/></svg></a><a class="social-icon" href="https://www.instagram.com/one_ch.0?igsh=dzl4cm9vaXlsYWt4&amp;utm_source=qr" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2"/></svg></a><a class="social-icon" href="mailto:lee12131213@gmail.com" aria-label="이메일"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm9 9L3 7v2l9 6 9-6V7z"/></svg></a></div><p>Email: <a href="mailto:lee12131213@gmail.com">lee12131213@gmail.com</a></p><p>Phone: <a href="tel:+821075581545">+82 10-7558-1545</a></p></div></header><main class="container project-document" id="main"><p class="no-print"><a href="../#projects">← 모든 프로젝트</a></p><h2 class="section-title">Gomoku</h2><p class="quote">Unity로 제작한 2인용 오목 게임. 좌표 관리와 턴 전환, 네 방향 승리 판정을 구현했습니다.</p><p class="document-tools"><a href="https://github.com/Ohseguri/Project_Gomoku" class="" target="_blank" rel="noopener noreferrer">GitHub 저장소</a></p><div class="detail-layout"><aside class="toc no-print" aria-label="프로젝트 목차"><h3>목차</h3><a href="#section-1">Project Gomoku</a><a href="#section-2">프로젝트 소개</a><a href="#section-3">프로젝트 정보</a><a href="#section-4">사용 기술</a><a href="#section-5">게임 목표</a><a href="#section-6">핵심 게임 규칙</a><a href="#section-7">1. 턴제 진행</a><a href="#section-8">2. 돌 배치</a><a href="#section-9">3. 승리 조건</a><a href="#section-10">4. 게임 종료</a><a href="#section-11">게임 플레이 흐름</a><a href="#section-12">주요 구현 내용</a><a href="#section-13">보드 시스템</a><a href="#section-14">좌표 기반 돌 배치</a><a href="#section-15">턴 전환 시스템</a><a href="#section-16">승리 조건 검사</a><a href="#section-17">게임 상태 관리</a><a href="#section-18">UI 시스템</a><a href="#section-19">재시작 기능</a><a href="#section-20">시스템 구조</a><a href="#section-21">구현하면서 신경 쓴 부분</a><a href="#section-22">1. 보드 데이터와 화면 표시 분리</a><a href="#section-23">2. 승리 판정 최적화</a><a href="#section-24">3. 중복 착수 방지</a><a href="#section-25">4. 게임 종료 후 입력 제한</a><a href="#section-26">트러블슈팅</a><a href="#section-27">문제 1. 클릭 위치와 실제 보드 좌표가 어긋나는 문제</a><a href="#section-28">문제 2. 이미 돌이 있는 칸에 다시 둘 수 있는 문제</a><a href="#section-29">문제 3. 대각선 승리 판정이 누락되는 문제</a><a href="#section-30">문제 4. 승리 후에도 턴이 넘어가는 문제</a><a href="#section-31">구현을 통해 배운 점</a></aside><article class="article"><h2 id="section-1">Project Gomoku</h2>
+<blockquote>
+<p><b>Unity로 제작한 오목 기반 2인용 보드게임</b></p>
+</blockquote>
+<hr>
+<h3 id="section-2">프로젝트 소개</h3>
+<p><b>Project Gomoku</b>는 전통 보드게임인 <b>오목</b>을 Unity로 구현한 2인용 보드게임 프로젝트입니다.</p>
+<p>플레이어는 흑돌과 백돌을 번갈아가며 보드 위에 배치하고, 가로, 세로, 대각선 방향 중 하나로 같은 색 돌 5개를 먼저 연결하면 승리합니다.</p>
+<p>단순한 규칙을 가진 게임이지만, 실제 구현에서는</p>
+<p><b>보드 좌표 관리, 착수 가능 여부 판정, 턴 전환, 승리 조건 검사, UI 갱신, 게임 상태 관리</b>가 정확하게 맞물려야 합니다.</p>
+<p>이 프로젝트에서는 오목의 기본 규칙을 기반으로</p>
+<p>플레이어 입력부터 돌 배치, 승패 판정, 게임 재시작까지 하나의 완성된 게임 흐름으로 구현하는 것을 목표로 했습니다.</p>
+<hr>
+<h3 id="section-3">프로젝트 정보</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>프로젝트명</td>
+<td>Project Gomoku</td>
+</tr>
+<tr>
+<td>장르</td>
+<td>2D 보드게임 / 전략 게임</td>
+</tr>
+<tr>
+<td>플랫폼</td>
+<td>PC</td>
+</tr>
+<tr>
+<td>개발 엔진</td>
+<td>Unity</td>
+</tr>
+<tr>
+<td>개발 언어</td>
+<td>C#</td>
+</tr>
+<tr>
+<td>게임 방식</td>
+<td>2인 턴제 플레이</td>
+</tr>
+<tr>
+<td>핵심 키워드</td>
+<td>오목, 보드게임, 턴제, 좌표 판정, 승리 검사</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="section-4">사용 기술</h3>
+<ul>
+<li>Unity</li>
+<li>C#</li>
+<li>Unity UI</li>
+<li>2D Board System</li>
+<li>Turn Based Logic</li>
+<li>Grid Coordinate System</li>
+<li>Game State Management</li>
+<li>Win Condition Check</li>
+</ul>
+<hr>
+<h3 id="section-5">게임 목표</h3>
+<p>플레이어는 흑돌과 백돌을 번갈아 배치하며,</p>
+<p>먼저 같은 색 돌 5개를 연속으로 연결하는 것을 목표로 합니다.</p>
+<p>승리 조건은 다음 네 방향을 기준으로 검사합니다.</p>
+<ul>
+<li>가로 방향</li>
+<li>세로 방향</li>
+<li>좌상단 ↔ 우하단 대각선</li>
+<li>우상단 ↔ 좌하단 대각선</li>
+</ul>
+<hr>
+<h2 id="section-6">핵심 게임 규칙</h2>
+<hr>
+<h3 id="section-7">1. 턴제 진행</h3>
+<p>게임은 흑돌과 백돌이 번갈아가며 진행됩니다.</p>
+<p>현재 차례의 플레이어가 보드 위에 돌을 배치하면,</p>
+<p>해당 위치가 유효한지 검사한 뒤 다음 플레이어에게 턴이 넘어갑니다.</p>
+<hr>
+<h3 id="section-8">2. 돌 배치</h3>
+<p>플레이어는 비어 있는 칸에만 돌을 놓을 수 있습니다.</p>
+<p>이미 돌이 놓여 있는 칸에는 다시 착수할 수 없으며,</p>
+<p>보드 범위를 벗어난 위치에도 돌을 둘 수 없습니다.</p>
+<hr>
+<h3 id="section-9">3. 승리 조건</h3>
+<p>돌을 배치한 후에는 해당 돌을 기준으로 네 방향을 검사합니다.</p>
+<p>같은 색 돌이 한 방향으로 연속해서 5개 이상 이어져 있다면 해당 플레이어가 승리합니다.</p>
+<hr>
+<h3 id="section-10">4. 게임 종료</h3>
+<p>승리 조건이 만족되면 게임은 종료 상태로 변경됩니다.</p>
+<p>게임이 종료된 뒤에는 추가 착수를 막고,</p>
+<p>승리한 플레이어를 UI에 표시하도록 구성했습니다.</p>
+<hr>
+<h2 id="section-11">게임 플레이 흐름</h2>
+<pre><code class="language-txt">게임 시작
+↓
+보드 초기화
+↓
+흑돌 플레이어 턴 시작
+↓
+플레이어가 보드 칸 선택
+↓
+해당 칸 착수 가능 여부 검사
+↓
+돌 배치
+↓
+승리 조건 검사
+↓
+승리 시 게임 종료
+↓
+승리하지 않았다면 턴 전환
+↓
+다음 플레이어 진행
+</code></pre>
+<hr>
+<h2 id="section-12">주요 구현 내용</h2>
+<hr>
+<h3 id="section-13">보드 시스템</h3>
+<p>오목 게임의 핵심은 보드 데이터를 정확하게 관리하는 것입니다.</p>
+<p>각 칸은 좌표 기반으로 관리되며,</p>
+<p>현재 칸이 비어 있는지, 흑돌이 놓여 있는지, 백돌이 놓여 있는지를 상태값으로 구분합니다.</p>
+<p>구현한 주요 기능은 다음과 같습니다.</p>
+<ul>
+<li>보드 크기 관리</li>
+<li>좌표 기반 셀 접근</li>
+<li>셀 상태 저장</li>
+<li>착수 가능 여부 검사</li>
+<li>보드 초기화</li>
+<li>게임 종료 후 입력 제한</li>
+</ul>
+<hr>
+<h3 id="section-14">좌표 기반 돌 배치</h3>
+<p>플레이어가 보드 위를 클릭하면 해당 위치가 어떤 칸에 해당하는지 계산합니다.</p>
+<p>계산된 좌표를 기준으로 다음 조건을 확인합니다.</p>
+<ul>
+<li>보드 범위 안에 있는 위치인지</li>
+<li>이미 돌이 놓여 있지 않은지</li>
+<li>게임이 진행 중인 상태인지</li>
+</ul>
+<p>모든 조건을 만족하면 현재 턴의 돌을 해당 위치에 배치합니다.</p>
+<hr>
+<h3 id="section-15">턴 전환 시스템</h3>
+<p>오목은 두 플레이어가 번갈아 진행하는 턴제 게임입니다.</p>
+<p>따라서 돌을 정상적으로 배치한 뒤에는 현재 턴 정보를 변경해야 합니다.</p>
+<p>턴 시스템에서는 다음 요소를 관리했습니다.</p>
+<ul>
+<li>현재 플레이어 정보</li>
+<li>흑돌 / 백돌 구분</li>
+<li>착수 후 턴 전환</li>
+<li>게임 종료 시 턴 진행 중단</li>
+<li>현재 차례 UI 표시</li>
+</ul>
+<hr>
+<h3 id="section-16">승리 조건 검사</h3>
+<p>돌을 배치할 때마다 전체 보드를 매번 검사하는 방식보다,</p>
+<p>방금 배치한 돌을 기준으로 필요한 방향만 검사하는 방식이 효율적입니다.</p>
+<p>검사 방향은 다음 네 가지입니다.</p>
+<ul>
+<li>가로</li>
+<li>세로</li>
+<li>좌상단 ↔ 우하단 대각선</li>
+<li>우상단 ↔ 좌하단 대각선</li>
+</ul>
+<p>각 방향에서 양쪽으로 같은 색 돌이 몇 개 이어져 있는지 확인하고,</p>
+<p>합산 결과가 5개 이상이면 승리로 판정합니다.</p>
+<hr>
+<h3 id="section-17">게임 상태 관리</h3>
+<p>게임은 단순히 돌을 놓는 상태만 있는 것이 아니라,</p>
+<p>현재 어떤 단계인지에 따라 입력과 UI 처리가 달라져야 합니다.</p>
+<p>관리한 게임 상태는 다음과 같습니다.</p>
+<ul>
+<li>게임 대기</li>
+<li>게임 진행 중</li>
+<li>흑돌 턴</li>
+<li>백돌 턴</li>
+<li>승리 판정 완료</li>
+<li>게임 종료</li>
+</ul>
+<p>이 상태값을 기준으로 불필요한 입력을 막고,</p>
+<p>게임 흐름이 꼬이지 않도록 구성했습니다.</p>
+<hr>
+<h3 id="section-18">UI 시스템</h3>
+<p>플레이어가 현재 게임 상태를 쉽게 확인할 수 있도록 UI를 구성했습니다.</p>
+<p>UI에서 표시하는 정보는 다음과 같습니다.</p>
+<ul>
+<li>현재 턴</li>
+<li>흑돌 / 백돌 구분</li>
+<li>승리한 플레이어</li>
+<li>게임 종료 메시지</li>
+<li>재시작 버튼</li>
+</ul>
+<p>게임 상태가 변경될 때마다 UI도 함께 갱신되도록 구성했습니다.</p>
+<hr>
+<h3 id="section-19">재시작 기능</h3>
+<p>게임이 끝난 뒤 다시 플레이할 수 있도록 재시작 기능을 구현했습니다.</p>
+<p>재시작 시에는 다음 정보가 초기화됩니다.</p>
+<ul>
+<li>보드에 놓인 모든 돌</li>
+<li>현재 턴 정보</li>
+<li>승리 상태</li>
+<li>게임 종료 상태</li>
+<li>UI 메시지</li>
+</ul>
+<p>이를 통해 씬을 다시 로드하지 않고도 새로운 게임을 시작할 수 있도록 구성했습니다.</p>
+<hr>
+<h2 id="section-20">시스템 구조</h2>
+<pre><code class="language-txt">플레이어 입력
+↓
+보드 좌표 변환
+↓
+착수 가능 여부 검사
+↓
+돌 배치
+↓
+보드 데이터 갱신
+↓
+승리 조건 검사
+↓
+UI 갱신
+↓
+턴 전환 또는 게임 종료
+</code></pre>
+<hr>
+<h2 id="section-21">구현하면서 신경 쓴 부분</h2>
+<hr>
+<h3 id="section-22">1. 보드 데이터와 화면 표시 분리</h3>
+<p>보드의 실제 상태와 화면에 보이는 돌 오브젝트를 분리해서 관리했습니다.</p>
+<p>게임 로직은 좌표 데이터와 상태값을 기준으로 처리하고,</p>
+<p>화면에 보이는 돌은 그 결과를 시각적으로 표현하는 역할만 하도록 구성했습니다.</p>
+<p>이 구조를 통해 게임 판정과 UI 표시가 서로 꼬이지 않도록 했습니다.</p>
+<hr>
+<h3 id="section-23">2. 승리 판정 최적화</h3>
+<p>승리 여부를 확인할 때 전체 보드를 매번 검사하는 방식은 비효율적일 수 있습니다.</p>
+<p>그래서 방금 놓은 돌을 기준으로</p>
+<p>가로, 세로, 대각선 방향만 검사하는 방식으로 구현했습니다.</p>
+<p>이 방식은 오목의 규칙에 적합하며,</p>
+<p>불필요한 연산을 줄이면서도 정확한 승리 판정이 가능합니다.</p>
+<hr>
+<h3 id="section-24">3. 중복 착수 방지</h3>
+<p>이미 돌이 놓인 칸에 다시 돌을 놓으면 게임 규칙이 깨질 수 있습니다.</p>
+<p>따라서 착수 전 해당 좌표의 상태를 먼저 검사하고,</p>
+<p>빈 칸일 때만 돌을 배치하도록 구성했습니다.</p>
+<p>이를 통해 잘못된 입력으로 인한 게임 데이터 오류를 방지했습니다.</p>
+<hr>
+<h3 id="section-25">4. 게임 종료 후 입력 제한</h3>
+<p>승자가 결정된 이후에도 플레이어가 계속 돌을 놓을 수 있다면,</p>
+<p>게임 상태와 결과가 어긋날 수 있습니다.</p>
+<p>따라서 게임 종료 상태에서는 추가 입력을 받지 않도록 처리했습니다.</p>
+<hr>
+<h2 id="section-26">트러블슈팅</h2>
+<hr>
+<h3 id="section-27">문제 1. 클릭 위치와 실제 보드 좌표가 어긋나는 문제</h3>
+<h3>원인</h3>
+<p>마우스로 클릭한 화면 위치를 그대로 사용하면,</p>
+<p>실제 보드의 칸 좌표와 정확히 일치하지 않는 문제가 발생할 수 있었습니다.</p>
+<h3>해결</h3>
+<p>화면 좌표를 보드 기준 좌표로 변환한 뒤,</p>
+<p>셀 크기를 기준으로 몇 번째 칸인지 계산하도록 처리했습니다.</p>
+<p>이를 통해 플레이어가 클릭한 위치와 실제 돌이 놓이는 위치가 일치하도록 만들었습니다.</p>
+<hr>
+<h3 id="section-28">문제 2. 이미 돌이 있는 칸에 다시 둘 수 있는 문제</h3>
+<h3>원인</h3>
+<p>돌을 배치하기 전에 해당 칸의 상태를 검사하지 않으면,</p>
+<p>기존 돌 위에 새로운 돌이 덮이는 문제가 발생할 수 있습니다.</p>
+<h3>해결</h3>
+<p>착수 전 보드 데이터에서 해당 좌표의 상태를 확인하고,</p>
+<p>비어 있는 칸일 때만 돌을 배치하도록 수정했습니다.</p>
+<hr>
+<h3 id="section-29">문제 3. 대각선 승리 판정이 누락되는 문제</h3>
+<h3>원인</h3>
+<p>가로와 세로는 단순한 좌표 증가로 검사할 수 있지만,</p>
+<p>대각선은 x와 y 좌표가 동시에 변하기 때문에 별도 방향 검사가 필요했습니다.</p>
+<h3>해결</h3>
+<p>대각선 방향을 두 가지로 나누어 검사했습니다.</p>
+<ul>
+<li>x + 1, y + 1 방향</li>
+<li>x + 1, y - 1 방향</li>
+</ul>
+<p>각 방향의 양쪽을 모두 확인하여 연속된 돌 개수를 합산하도록 처리했습니다.</p>
+<hr>
+<h3 id="section-30">문제 4. 승리 후에도 턴이 넘어가는 문제</h3>
+<h3>원인</h3>
+<p>승리 판정 후에도 기존 턴 전환 로직이 실행되면,</p>
+<p>게임이 종료되었음에도 다음 플레이어 턴으로 표시되는 문제가 발생할 수 있습니다.</p>
+<h3>해결</h3>
+<p>돌을 배치한 뒤 먼저 승리 조건을 검사하고,</p>
+<p>승리하지 않았을 때만 턴을 전환하도록 흐름을 정리했습니다.</p>
+<hr>
+<h2 id="section-31">구현을 통해 배운 점</h2>
+<p>이번 프로젝트를 통해 보드게임 구현에서 가장 중요한 것은</p>
+<p>단순히 오브젝트를 화면에 배치하는 것이 아니라,</p>
+<p><b>보드 데이터와 게임 규칙을 정확하게 관리하는 것</b>이라는 점을 배웠습니다.</p>
+<p>오목은 규칙 자체는 단순하지만,</p>
+<p>실제로 구현하려면 좌표 관리, 턴 전환, 중복 입력 방지, 승리 조건 검사, 게임 종료 상태 관리가 모두 필요했습니다.</p>
+<p>특히 승리 판정 로직을 구현하면서</p>
+<p>2차원 배열 기반 보드에서 방향 벡터를 활용해 특정 패턴을 검사하는 방법을 익힐 수 있었습니다.</p>
+<p>또한 게임 상태를 명확하게 분리해두면</p>
+<p>입력 처리, UI 갱신, 턴 전환이 더 안정적으로 동작한다는 것을 경험했습니다.</p>
+<p class="print-only">https://seungugi.github.io/portfolio/projects/gomoku.html</p></article></div><nav class="next-project no-print" aria-label="다른 프로젝트"><a href="../#projects">← 프로젝트 목록</a><a href="invader.html">Invader →</a></nav></main><footer class="container footer"><p>이승욱 · <a href="mailto:lee12131213@gmail.com">lee12131213@gmail.com</a> · <a href="https://github.com/seungugi" class="" target="_blank" rel="noopener noreferrer">Github</a></p></footer></body></html>

@@ -24,3 +24,14 @@ h1,h2,h3,h4{line-height:1.1;margin:20px 0 10px}
 
 #certificates a[href$=".webp"],#certificates a[href$=".pdf"]{color:#0969da}
 #certificates a[href$=".webp"]:hover,#certificates a[href$=".pdf"]:hover{color:#0550ae;text-decoration:underline}
+
+/* Collapsible resume sections. */
+details.resume-section>summary{position:relative;list-style:none;cursor:pointer}
+details.resume-section>summary::-webkit-details-marker{display:none}
+details.resume-section>summary .section-title{padding:12px 40px;margin-bottom:0}
+details.resume-section>summary::after{content:"";position:absolute;right:15px;top:22px;width:10px;height:10px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg)}
+details.resume-section[open]>summary::after{transform:rotate(225deg);top:27px}
+details.resume-section>summary:hover{color:#555}
+details.resume-section>summary:focus-visible{outline:2px solid #333;outline-offset:5px}
+.section-content{padding-top:10px}
+@media print{details.resume-section>summary::after{display:none}details.resume-section>summary .section-title{padding:0 0 10px;margin:20px 0}.section-content{padding-top:0}}

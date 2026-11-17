@@ -6,6 +6,7 @@ import {fileURLToPath} from 'node:url';
 const {marked}=createRequire(import.meta.url)('marked');
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const styleVersion=createHash('sha256').update(await fs.readFile(path.join(root,'styles.css'))).digest('hex').slice(0,12);
+const sectionsVersion=createHash('sha256').update(await fs.readFile(path.join(root,'assets/sections.js'))).digest('hex').slice(0,12);
 const data=JSON.parse(await fs.readFile(path.join(root,'content/profile.json'),'utf8'));
 const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 const out=(name,html)=>fs.writeFile(path.join(root,name),html);
@@ -21,7 +22,7 @@ function header(prefix=''){
 function shell(title,description,body,prefix='',canonical=''){
  return `<!doctype html>\n<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff"><title>${esc(title)}</title><meta name="description" content="${esc(description)}"><link rel="canonical" href="https://seungugi.github.io/portfolio/${canonical}"><meta property="og:type" content="website"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="https://seungugi.github.io/portfolio/${canonical}"><meta property="og:image" content="https://seungugi.github.io/portfolio/assets/asset-00.webp"><link rel="icon" type="image/svg+xml" href="${prefix}assets/favicon.svg"><link rel="stylesheet" href="${prefix}styles.css?v=${styleVersion}"></head><body>${header(prefix)}${body}<footer class="container footer"><p>${esc(data.name)} · <a href="mailto:${data.email}">${data.email}</a> · ${external(data.github,'Github')}</p></footer></body></html>\n`;
 }
-const section=(id,title,body)=>`<section class="resume-section" id="${id}"><h2 class="section-title">${title}</h2>${body}</section>`;
+const section=(id,title,body)=>id==='about'?`<section class="resume-section" id="${id}"><h2 class="section-title">${title}</h2>${body}</section>`:`<details class="resume-section" id="${id}"><summary><h2 class="section-title">${title}</h2></summary><div class="section-content">${body}</div></details>`;
 const row=(title,meta,body)=>`<article class="resume-row"><div class="details"><h3>${title}</h3>${meta}</div><div class="description">${body}</div></article>`;
 const projectPoints={
  invader:['그리드 좌표를 바탕으로 모듈을 배치하고, 90도 단위 회전과 배치 미리보기를 구현했습니다.','상점·인벤토리와 보드 상태를 연결하고, 배치된 모듈 데이터를 전투 시스템에 전달했습니다.'],
@@ -33,13 +34,12 @@ const projects=data.projects.map(p=>row(`<a href="projects/${p.slug}.html">${esc
 const skillGroup=(title,names)=>`<h3 class="subheading">${title}</h3><ul>${data.skills.filter(s=>names.includes(s.name)).map(s=>`<li><strong>${esc(s.name)}</strong> — ${s.level} / 10</li>`).join('')}</ul>`;
 const home=`<main class="container" id="main">
 ${section('about','About Me',`<div class="about-row"><div class="profile-column"><div class="profile-photo" role="img" aria-label="벚꽃나무 아래의 이승욱" style="background-image:url('${data.photo}')"></div></div><div class="about-content"><p>안녕하세요. 배움을 이어가는 프로그래머 <strong>${esc(data.name)}</strong>입니다.</p><p>부산대학교에서 컴퓨터공학을 전공하고 있습니다. <mark>Unity</mark>와 <mark>C#</mark>을 사용해 게임의 규칙과 플레이를 구현하며, AI 프로젝트와 대회에도 참여하고 있습니다.</p><p>보드와 모듈 배치, 퍼즐, 2D 액션 게임을 만들면서 구현 경험을 쌓았습니다. 프로젝트의 구현 내용과 학습 기록을 이곳에 정리합니다.</p><p>${esc(data.englishName)} · ${esc(data.location)}<br>${data.birth}</p></div></div>`)}
-${section('experience','Experience',data.experience.slice(0,6).map(([period,title,detail])=>row(esc(title),`<p>${esc(period)}</p>`,`<p>${esc(detail)}</p>`)).join(''))}
+${section('experience','Experience',data.experience.slice(0,10).sort((a,b)=>b[0].slice(0,7).localeCompare(a[0].slice(0,7))).map(([period,title,detail])=>row(esc(title),`<p>${esc(period)}</p>`,`<p>${esc(detail)}</p>`)).join(''))}
 ${section('projects','Projects',projects)}
+${section('certificates','자격 · 인증',data.certificates.map(c=>row(esc(c.name),`<p>${c.score!==null?`${c.score}점`:esc(c.status)}</p>`,`<p>${c.name==='TOPCIT'?'TOPCIT 성적 인증':c.name==='NYPC'?'NYPC 마스터 트랙 — 전략 게임 AI 개발':c.name==='OPIC'?'영어 말하기 시험 준비 중':'SK하이닉스 해커톤 참여 인증'}</p>${c.assets.length?`<p>${c.assets.map(a=>external(a.path,/\.pdf$/.test(a.path)?'인증서 PDF':'인증 이미지')).join(' · ')}</p>`:''}`)).join(''))}
 ${section('skills','Skill',`<p class="section-intro">노션에 기록한 기술과 도구입니다. 숙련도는 10점 만점의 자기평가입니다.</p>${skillGroup('개발 · 제작',['Python','C','C#','JavaScript','Blender','GitHub'])}${skillGroup('문서 · 협업 · AI 도구',['Notion','한글','Microsoft Word','Microsoft PowerPoint','Microsoft Excel','ChatGPT','Google Gemini'])}`)}
 ${section('education','Education',data.education.map((s,i)=>row(esc(s.name),`<p>${esc(s.period)}</p>`,`<p><strong>${esc(s.detail)}</strong></p><p>${esc(s.en)}</p>${i===0?`<ul><li>이수 학점: ${data.credits}</li><li>평점 평균: ${data.gpa}</li></ul>`:''}`)).join(''))}
-${section('certificates','자격 · 인증',data.certificates.map(c=>row(esc(c.name),`<p>${c.score!==null?`${c.score}점`:esc(c.status)}</p>`,`<p>${c.name==='TOPCIT'?'TOPCIT 성적 인증':c.name==='NYPC'?'NYPC 마스터 트랙 — 전략 게임 AI 개발':c.name==='OPIC'?'영어 말하기 시험 준비 중':'SK하이닉스 해커톤 참여 인증'}</p>${c.assets.length?`<p>${c.assets.map(a=>external(a.path,/\.pdf$/.test(a.path)?'인증서 PDF':'인증 이미지')).join(' · ')}</p>`:''}`)).join(''))}
-${section('activities','외부 활동',data.experience.slice(6,10).map(([period,title,detail])=>row(esc(title),`<p>${esc(period)}</p>`,`<p>${esc(detail)}</p>`)).join(''))}
-</main>`;
+</main><script src="assets/sections.js?v=${sectionsVersion}" defer></script>`;
 await out('index.html',shell('이승욱 | 배움을 이어가는 Programmer','이승욱의 개발 이력서. Unity와 C# 게임 개발 프로젝트, AI 프로젝트 경험과 학습 기록을 소개합니다.',home));
 await fs.mkdir(path.join(root,'projects'),{recursive:true});
 for(const [i,p] of data.projects.entries()){
